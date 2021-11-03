@@ -13,7 +13,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/store')
+      .get('https://safe-oasis-61254.herokuapp.com/store')
       .then((response) => {
         setProduct(response.data)
       })
