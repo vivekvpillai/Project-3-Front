@@ -1,9 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState, useEffect} from 'react'
+import axios from 'axios'
 
-function App() {
+const App = () => {
+  const [name, setName] = useState('')
+  const [des, setDes] = useState('')
+  const [image, setImage] = useState('')
+  const [qty, setQty] = useState()
+  const [price, setPrice] = useState()
+
+  const [product, setProduct] = useState([])
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/store')
+      .then((response) => {
+        setProduct(response.data)
+      })
+  })
+
   return (
-    <h1> hello world </h1>
+    <div>
+      <h1> hello world </h1>
+      <div>
+        {
+          product.map((products) => {
+            return (
+              <div>
+                <h2>{products.name}</h2>
+              </div>
+            )
+          })
+        }
+      </div>
+    </div>
   );
 }
 
