@@ -2,7 +2,7 @@ import React from 'react'
 
 const Map = (props) => {
   return (
-    <div id="map section">
+    <div id="map-section">
       {
         props.product.map((products) => {
           return (
@@ -15,7 +15,9 @@ const Map = (props) => {
 
               <button onClick={ (event) => {props.handleDelete(products)}}>Bought!</button>
 
+              <a href="#open-edit-modal">
               <button onClick={ (event) => {props.updateButton(products)}}>Edit</button>
+              </a>
             </div>
           )
         })

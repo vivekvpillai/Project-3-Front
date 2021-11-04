@@ -1,4 +1,3 @@
-import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Map from './components/map'
@@ -118,28 +117,45 @@ const App = () => {
 
   return (
     <main>
-      <h1>Product Listing</h1>
-      <div id="submit-section">
-        <h2>List a product to sell</h2>
-        <form onSubmit={handleNewProductFormSubmit}>
-          Name: <input type="text" onChange={handlenewNameChange}/><br/>
-          Image: <input type="text" onChange={handleNewImageChange} /><br/>
-          Description: <input type="text" onChange={handleNewDescriptionChange} /><br/>
-          Price: <input type="number" min='0' onChange={handleNewPriceChange} /><br/>
-          Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} /><br/>
-          <input type="submit" value="create product" />
-        </form>
+    <header>
+      <div className="header-container">
+        <h2 className="header-words">
+          <span id="left">Quick Cash</span>
+          <div id="sell-link">
+            <span id='right'>
+              <a href="#open-create-modal">Sell</a>
+            </span>
+          </div>
+        </h2>
+      </div>
+    </header>
+      <div id="open-create-modal" className="modal">
+        <div className="modal-text">
+          <h2>List a product to sell</h2>
+          <form onSubmit={handleNewProductFormSubmit}>
+            Name: <input type="text" onChange={handlenewNameChange}/><br/>
+            Image: <input type="text" onChange={handleNewImageChange} /><br/>
+            Description: <input type="text" onChange={handleNewDescriptionChange} /><br/>
+            Price: <input type="number" min='0' onChange={handleNewPriceChange} /><br/>
+            Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} /><br/>
+            <input type="submit" value="create product" />
+          </form>
+          <a href="#" class="close-modal">Close</a>
+        </div>
       </div>
 
-      <div id="edit section">
-        <form onSubmit={handleUpdatesToProduct}>
-            Name: <input type="text" onChange={handlenewNameChange} value={editName}/><br/>
-            Image: <input type="text" onChange={handleNewImageChange} value={editImage}/><br/>
-            Description: <input type="text" onChange={handleNewDescriptionChange} value={editDescription}/><br/>
-            Price: <input type="number" min='0' onChange={handleNewPriceChange} value={editPrice}/><br/>
-            Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} value={editQty}/><br/>
-            <input type="submit" value="edit product"/>
-          </form>
+      <div id="open-edit-modal" className="modal">
+        <div className="modal-text">
+          <form onSubmit={handleUpdatesToProduct}>
+              Name: <input type="text" onChange={handlenewNameChange} value={editName}/><br/>
+              Image: <input type="text" onChange={handleNewImageChange} value={editImage}/><br/>
+              Description: <input type="text" onChange={handleNewDescriptionChange} value={editDescription}/><br/>
+              Price: <input type="number" min='0' onChange={handleNewPriceChange} value={editPrice}/><br/>
+              Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} value={editQty}/><br/>
+              <input type="submit" value="edit product"/>
+            </form>
+            <a href="#" class="close-modal">Close</a>
+          </div>
         </div>
 
         <div id="product listing">
