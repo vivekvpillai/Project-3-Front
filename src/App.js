@@ -1,7 +1,7 @@
 import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-
+import Map from './components/map'
 
 const App = () => {
   const [name, setName] = useState('')
