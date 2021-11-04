@@ -9,7 +9,7 @@ const App = () => {
   const [qty, setQty] = useState()
   const [price, setPrice] = useState()
 
-  const [product, setProduct] = useState([])
+  const [product, setProducts] = useState([])
 
 
   const handlenewNameChange = (event)=>{
@@ -32,29 +32,69 @@ const App = () => {
     setPrice(event.target.value);
   }
 
+  const handleNewProductFormSubmit = (event) => {
+    event.preventDefault()
+    axios.post(
+      'https://safe-oasis-61254.herokuapp.com/store',
+      {
+        name:name,
+        image: image,
+        description: des,
+        price: price,
+        qty: qty
+
+      }
+    ).then(() => {
+      axios
+          .get('https://safe-oasis-61254.herokuapp.com/store')
+          .then((response) => {
+              setProducts(response.data)
+        })
+    })
+  }
+
   useEffect(() => {
     axios
       .get('https://safe-oasis-61254.herokuapp.com/store')
       .then((response) => {
-        setProduct(response.data)
+        setProducts(response.data)
       })
   })
 
   return (
-    <div>
-      <h1> hello world </h1>
+    <main>
+      <h1>Product Listing</h1>
+        <div id="submit-section">
+          <h2>List a product to sell</h2>
+          {name}
+          {des}
+          {image}
+          {price}
+          {qty}
+          <form onSubmit={handleNewProductFormSubmit}>
+            Name: <input type="text" onChange={handlenewNameChange}/><br/>
+            Image: <input type="text" onChange={handleNewImageChange} /><br/>
+            Description: <input type="text" onChange={handleNewDescriptionChange} /><br/>
+            Price: <input type="text" onChange={handleNewPriceChange} /><br/>
+            Quantity: <input type="number" onChange={handleNewQuantityChange} /><br/>
+            <input type="submit" value="create product" />
+          </form>
+        </div>
       <div>
-        {
-          product.map((products) => {
-            return (
-              <div>
-                <h2>{products.name}</h2>
-              </div>
-            )
-          })
-        }
+        <h2>Products</h2>
+        <div>
+          {
+            product.map((products) => {
+              return (
+                <div>
+                  <h2>{products.name}</h2>
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
-    </div>
+    </main>
   );
 }
 
