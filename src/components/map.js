@@ -2,7 +2,7 @@ import React from 'react'
 
 const Map = (props) => {
   return (
-    <div>
+    <div id="map section">
       {
         props.product.map((products) => {
           return (

@@ -54,6 +54,39 @@ const App = () => {
     })
   }
 
+  const handleUpdatesToProduct = (productData) => {
+    axios
+    .put(
+      `https://safe-oasis-61254.herokuapp.com/store/${productData._id}`,
+        {
+          name:name,
+          image: image,
+          description: des,
+          price: price,
+          qty: qty
+        }
+    )
+    .then(()=> {
+      axios
+          .get('https://safe-oasis-61254.herokuapp.com/store')
+          .then((response) => {
+            setProducts(response.data)
+          })
+    })
+  }
+
+  const handleDelete = (productData)=> {
+    axios
+        .delete(`https://safe-oasis-61254.herokuapp.com/store/${productData._id}`)
+        .then(()=> {
+          axios
+              .get('https://safe-oasis-61254.herokuapp.com/store')
+              .then((response)=>{
+                  setProducts(response.data)
+              })
+        })
+  }
+
   useEffect(() => {
     axios
       .get('https://safe-oasis-61254.herokuapp.com/store')
@@ -81,12 +114,25 @@ const App = () => {
             <input type="submit" value="create product" />
           </form>
         </div>
-      <div>
-        <h2>Products</h2>
-        <Map
-        product={product}
-        />
-      </div>
+        <div id="product listing">
+          <h2>Products</h2>
+          <Map
+          product={product}
+          />
+          <div id="edit section">
+            <form onSubmit={(event) => {
+              handleUpdatesToProduct(product)
+              }}>
+                Name: <input type="text" onChange={handlenewNameChange}/><br/>
+                Image: <input type="text" onChange={handleNewImageChange}/><br/>
+                Description: <input type="text" onChange={handleNewDescriptionChange}/><br/>
+                Price: <input type="text" onChange={handleNewPriceChange}/><br/>
+                Quantity: <input type="text" onChange={handleNewQuantityChange}/><br/>
+                <input type="submit" value="edit product"/>
+              </form>
+            </div>
+            <button onClick={ (event) => {handleDelete(product)}}>Bought!</button>
+          </div>
     </main>
   );
 }
