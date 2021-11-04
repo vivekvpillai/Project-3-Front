@@ -5,32 +5,43 @@ import Map from './components/map'
 
 const App = () => {
   const [name, setName] = useState('')
-  const [des, setDes] = useState('')
+  const [description, setDescription] = useState('')
   const [image, setImage] = useState('')
   const [qty, setQty] = useState()
   const [price, setPrice] = useState()
 
   const [product, setProducts] = useState([])
 
+  const [editName, setEditName] = useState('')
+  const [editDescription, setEditDescription] = useState('')
+  const [editImage, setEditImage] = useState('')
+  const [editQty, setEditQty] = useState()
+  const [editPrice, setEditPrice] = useState()
+  const [id, setId] = useState('')
 
   const handlenewNameChange = (event)=>{
-   setName(event.target.value);
+    setName(event.target.value);
+    setEditName(event.target.value)
   }
 
   const handleNewDescriptionChange = (event) => {
-   setDes(event.target.value);
+    setDescription(event.target.value)
+    setEditDescription(event.target.value)
   }
 
   const handleNewImageChange = (event) => {
-    setImage(event.target.value);
+    setImage(event.target.value)
+    setEditImage(event.target.value)
   }
 
   const handleNewQuantityChange = (event) => {
-    setQty(event.target.value);
+    setQty(event.target.value)
+    setEditQty(event.target.value)
   }
 
   const handleNewPriceChange = (event) => {
-    setPrice(event.target.value);
+    setPrice(event.target.value)
+    setEditPrice(event.target.value)
   }
 
   const handleNewProductFormSubmit = (event) => {
@@ -40,7 +51,7 @@ const App = () => {
       {
         name:name,
         image: image,
-        description: des,
+        description: description,
         price: price,
         qty: qty
 
@@ -54,16 +65,17 @@ const App = () => {
     })
   }
 
-  const handleUpdatesToProduct = (productData) => {
+  const handleUpdatesToProduct = (e) => {
+    e.preventDefault()
     axios
     .put(
-      `https://safe-oasis-61254.herokuapp.com/store/${productData._id}`,
+      `https://safe-oasis-61254.herokuapp.com/store/${id}`,
         {
-          name:name,
-          image: image,
-          description: des,
-          price: price,
-          qty: qty
+          name:editName,
+          image:editImage,
+          description:editDescription,
+          price:editPrice,
+          qty:editQty
         }
     )
     .then(()=> {
@@ -73,6 +85,15 @@ const App = () => {
             setProducts(response.data)
           })
     })
+  }
+
+  const updateButton = (productData) => {
+    setEditName(productData.name)
+    setEditImage(productData.image)
+    setEditDescription(productData.description)
+    setEditPrice(productData.price)
+    setEditQty(productData.qty)
+    setId(productData._id)
   }
 
   const handleDelete = (productData)=> {
@@ -98,41 +119,38 @@ const App = () => {
   return (
     <main>
       <h1>Product Listing</h1>
-        <div id="submit-section">
-          <h2>List a product to sell</h2>
-          {name}
-          {des}
-          {image}
-          {price}
-          {qty}
-          <form onSubmit={handleNewProductFormSubmit}>
-            Name: <input type="text" onChange={handlenewNameChange}/><br/>
-            Image: <input type="text" onChange={handleNewImageChange} /><br/>
-            Description: <input type="text" onChange={handleNewDescriptionChange} /><br/>
-            Price: <input type="text" onChange={handleNewPriceChange} /><br/>
-            Quantity: <input type="number" onChange={handleNewQuantityChange} /><br/>
-            <input type="submit" value="create product" />
+      <div id="submit-section">
+        <h2>List a product to sell</h2>
+        <form onSubmit={handleNewProductFormSubmit}>
+          Name: <input type="text" onChange={handlenewNameChange}/><br/>
+          Image: <input type="text" onChange={handleNewImageChange} /><br/>
+          Description: <input type="text" onChange={handleNewDescriptionChange} /><br/>
+          Price: <input type="number" min='0' onChange={handleNewPriceChange} /><br/>
+          Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} /><br/>
+          <input type="submit" value="create product" />
+        </form>
+      </div>
+
+      <div id="edit section">
+        <form onSubmit={handleUpdatesToProduct}>
+            Name: <input type="text" onChange={handlenewNameChange} value={editName}/><br/>
+            Image: <input type="text" onChange={handleNewImageChange} value={editImage}/><br/>
+            Description: <input type="text" onChange={handleNewDescriptionChange} value={editDescription}/><br/>
+            Price: <input type="number" min='0' onChange={handleNewPriceChange} value={editPrice}/><br/>
+            Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} value={editQty}/><br/>
+            <input type="submit" value="edit product"/>
           </form>
         </div>
+
         <div id="product listing">
           <h2>Products</h2>
           <Map
           product={product}
+          handleDelete={handleDelete}
+          handleUpdatesToProduct={handleUpdatesToProduct}
+          updateButton={updateButton}
           />
-          <div id="edit section">
-            <form onSubmit={(event) => {
-              handleUpdatesToProduct(product)
-              }}>
-                Name: <input type="text" onChange={handlenewNameChange}/><br/>
-                Image: <input type="text" onChange={handleNewImageChange}/><br/>
-                Description: <input type="text" onChange={handleNewDescriptionChange}/><br/>
-                Price: <input type="text" onChange={handleNewPriceChange}/><br/>
-                Quantity: <input type="text" onChange={handleNewQuantityChange}/><br/>
-                <input type="submit" value="edit product"/>
-              </form>
-            </div>
-            <button onClick={ (event) => {handleDelete(product)}}>Bought!</button>
-          </div>
+        </div>
     </main>
   );
 }

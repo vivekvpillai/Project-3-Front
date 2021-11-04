@@ -8,15 +8,14 @@ const Map = (props) => {
           return (
             <div>
               <img src={products.image}/>
-              <br/>
               <h2>{products.name}</h2>
-              <br/>
               <h3>{products.description}</h3>
-              <br/>
               <h2>{products.price}</h2>
-              <br/>
               <h2>{products.qty}</h2>
-              <br/>
+
+              <button onClick={ (event) => {props.handleDelete(products)}}>Bought!</button>
+
+              <button onClick={ (event) => {props.updateButton(products)}}>Edit</button>
             </div>
           )
         })
