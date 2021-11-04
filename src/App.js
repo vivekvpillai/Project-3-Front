@@ -2,6 +2,7 @@ import './App.css';
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 
+
 const App = () => {
   const [name, setName] = useState('')
   const [des, setDes] = useState('')
@@ -82,17 +83,9 @@ const App = () => {
         </div>
       <div>
         <h2>Products</h2>
-        <div>
-          {
-            product.map((products) => {
-              return (
-                <div>
-                  <h2>{products.name}</h2>
-                </div>
-              )
-            })
-          }
-        </div>
+        <Map
+        product={product}
+        />
       </div>
     </main>
   );
