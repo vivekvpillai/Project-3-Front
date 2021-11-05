@@ -123,7 +123,7 @@ const App = () => {
           <span id="left">Quick Cash</span>
           <div id="sell-link">
             <span id='right'>
-              <a href="#open-create-modal">Sell</a>
+              <a class="list-button" href="#open-create-modal">Sell</a>
             </span>
           </div>
         </h2>

@@ -32,6 +32,10 @@ body {
   flex-wrap: wrap;
 }
 
+.list-button{
+  color: white
+}
+
 /* Create Modal */
 .buy-btn a {
   text-decoration: none;
