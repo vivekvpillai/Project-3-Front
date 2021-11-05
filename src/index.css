@@ -32,6 +32,13 @@ body {
   flex-wrap: wrap;
 }
 
+.prodimg{
+  transform: scale(0.5)
+}
+
+.interesting{
+  color: red
+}
 .list-button{
   color: white
 }

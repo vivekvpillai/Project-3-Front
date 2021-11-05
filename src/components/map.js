@@ -7,8 +7,8 @@ const Map = (props) => {
         props.product.map((products) => {
           return (
             <div>
-              <img src={products.image}/>
-              <h2>{products.name}</h2>
+              <img className="prodimg" src={products.image}/>
+              <h2 className="interesting">{products.name}</h2>
               <h3>{products.description}</h3>
               <h2>{products.price}</h2>
               <h2>{products.qty}</h2>
