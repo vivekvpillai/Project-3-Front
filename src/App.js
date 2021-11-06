@@ -39,6 +39,7 @@ const App = () => {
      }
      setUsername('')
      setPassword('')
+<<<<<<< HEAD
      axios.post('https://safe-oasis-61254.herokuapp.com/users/createaccount', userObj)
      // .then(() => {
      //   axios
@@ -55,6 +56,19 @@ const App = () => {
            setToggleError(true)
          }
        // })
+=======
+     axios.post('https://safe-oasis-61254.herokuapp.com/createaccount', userObj).then((response) => {
+       if(response.data.username){
+         console.log(response);
+         setToggleError(false)
+         setErrorMessage('')
+         setCurrentUser(response.data)
+         handleToggleLogout()
+       } else {
+         setErrorMessage(response.data)
+         setToggleError(true)
+       }
+>>>>>>> e42780ead8ccafe16b504a893ecd945ab443a6fb
      })
    }
 
@@ -67,6 +81,7 @@ const App = () => {
      }
      setUsername('')
      setPassword('')
+<<<<<<< HEAD
      axios.put('https://safe-oasis-61254.herokuapp.com/users/login', userObj)
      // .then(() => {
      //   axios
@@ -84,6 +99,20 @@ const App = () => {
              setErrorMessage(response.data)
            }
         // })
+=======
+     axios.put('https://safe-oasis-61254.herokuapp.com/login', userObj).then((response) => {
+       if(response.data.username){
+         console.log(response)
+         setToggleError(false)
+         setErrorMessage('')
+         setCurrentUser(response.data)
+         handleToggleLogout()
+       } else {
+         console.log(response)
+         setToggleError(true)
+         setErrorMessage(response.data)
+       }
+>>>>>>> e42780ead8ccafe16b504a893ecd945ab443a6fb
      })
    }
 
