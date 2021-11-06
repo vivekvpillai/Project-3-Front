@@ -39,17 +39,22 @@ const App = () => {
      }
      setUsername('')
      setPassword('')
-     axios.post('http://localhost:3001/createaccount', userObj).then((response) => {
-       if(response.data.username){
-         console.log(response);
-         setToggleError(false)
-         setErrorMessage('')
-         setCurrentUser(response.data)
-         handleToggleLogout()
-       } else {
-         setErrorMessage(response.data)
-         setToggleError(true)
-       }
+     axios.post('https://safe-oasis-61254.herokuapp.com/users/createaccount', userObj)
+     // .then(() => {
+     //   axios
+     //    .get('http://localhost:3001/users')
+        .then((response) => {
+         if(response.data.username){
+           console.log(response);
+           setToggleError(false)
+           setErrorMessage('')
+           setCurrentUser(response.data)
+           handleToggleLogout()
+         } else {
+           setErrorMessage(response.data)
+           setToggleError(true)
+         }
+       // })
      })
    }
 
@@ -62,18 +67,23 @@ const App = () => {
      }
      setUsername('')
      setPassword('')
-     axios.put('http://localhost:3001/login', userObj).then((response) => {
-       if(response.data.username){
-         console.log(response)
-         setToggleError(false)
-         setErrorMessage('')
-         setCurrentUser(response.data)
-         handleToggleLogout()
-       } else {
-         console.log(response)
-         setToggleError(true)
-         setErrorMessage(response.data)
-       }
+     axios.put('https://safe-oasis-61254.herokuapp.com/users/login', userObj)
+     // .then(() => {
+     //   axios
+     //     .get('http://localhost:3001/users')
+         .then((response) => {
+           if(response.data.username){
+             console.log(response)
+             setToggleError(false)
+             setErrorMessage('')
+             setCurrentUser(response.data)
+             handleToggleLogout()
+           } else {
+             console.log(response)
+             setToggleError(true)
+             setErrorMessage(response.data)
+           }
+        // })
      })
    }
 
