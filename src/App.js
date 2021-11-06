@@ -39,7 +39,7 @@ const App = () => {
      }
      setUsername('')
      setPassword('')
-     axios.post('http://localhost:3001/createaccount', userObj).then((response) => {
+     axios.post('https://safe-oasis-61254.herokuapp.com/createaccount', userObj).then((response) => {
        if(response.data.username){
          console.log(response);
          setToggleError(false)
@@ -62,7 +62,7 @@ const App = () => {
      }
      setUsername('')
      setPassword('')
-     axios.put('http://localhost:3001/login', userObj).then((response) => {
+     axios.put('https://safe-oasis-61254.herokuapp.com/login', userObj).then((response) => {
        if(response.data.username){
          console.log(response)
          setToggleError(false)
