@@ -334,7 +334,7 @@ const App = () => {
         </div>
 
         <div>
-          <input type="text" onChange={(e) => {handleSearch(e.target.value)}}/>
+          Search: <input type="text" onChange={(e) => {handleSearch(e.target.value)}}/>
         </div>
 
         {
