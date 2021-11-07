@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Map from './components/map'
-import Search from './components/search'
+// import Search from './components/search'
 
 const App = () => {
   const [name, setName] = useState('')
@@ -20,7 +20,7 @@ const App = () => {
   const [id, setId] = useState('')
 
   const [search, setSearch] = useState('')
-  const [searchedName, setSearchedName] = useState('')
+  const [filtered, setFiltered] = useState([])
 
 ////////////////////////////////////////////////////////
 ////////////////AUTHENTICATION SECTION//////////////////
@@ -210,11 +210,15 @@ const App = () => {
 
   const handleSearch = (newSearch) => {
     setSearch(newSearch)
-    product.map((products) => {
-      if (products.includes(search)) {
-        setSearchedName(products.name)
-      }
-    })
+    // console.log(newSearch);
+    if (search !== '') {
+      const filteredData = product.filter((item) => {
+        return Object.values(item).join('').toLowerCase().includes(search.toLowerCase())
+      })
+      setFiltered(filteredData)
+    } else {
+      setFiltered(product)
+    }
   }
 
   useEffect(() => {
@@ -223,7 +227,7 @@ const App = () => {
       .then((response) => {
         setProducts(response.data)
       })
-  })
+  },[])
 
   return (
     <main>
@@ -324,9 +328,24 @@ const App = () => {
         </div>
 
         <div>
-          <input type="text" onChange={handlenewNameChange}/>
+          <input type="text" onChange={(e) => {handleSearch(e.target.value)}}/>
         </div>
-        <h2>{searchedName}</h2>
+
+        {
+        filtered.map((item) => {
+          return(
+            <div>
+            <img className="prodimg" src={item.image}/>
+            <div className="underpic">
+              <h2 className="prodName">{item.name}</h2>
+              <h3>{item.description}</h3>
+              <h2>{item.price}</h2>
+              <h2>{item.qty}</h2>
+            </div>
+            </div>
+          )
+        })
+      }
 
         <div id="product listing">
           <h2>Products</h2>
