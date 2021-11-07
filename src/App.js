@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import Map from './components/map'
+import Search from './components/search'
 
 const App = () => {
   const [name, setName] = useState('')
@@ -17,6 +18,9 @@ const App = () => {
   const [editQty, setEditQty] = useState()
   const [editPrice, setEditPrice] = useState()
   const [id, setId] = useState('')
+
+  const [search, setSearch] = useState('')
+  const [searchedName, setSearchedName] = useState('')
 
 ////////////////////////////////////////////////////////
 ////////////////AUTHENTICATION SECTION//////////////////
@@ -117,6 +121,7 @@ const App = () => {
   const handlenewNameChange = (event)=>{
     setName(event.target.value);
     setEditName(event.target.value)
+    handleSearch(event.target.value)
   }
 
   const handleNewDescriptionChange = (event) => {
@@ -201,6 +206,15 @@ const App = () => {
                   setProducts(response.data)
               })
         })
+  }
+
+  const handleSearch = (newSearch) => {
+    setSearch(newSearch)
+    product.map((products) => {
+      if (products.includes(search)) {
+        setSearchedName(products.name)
+      }
+    })
   }
 
   useEffect(() => {
@@ -301,11 +315,18 @@ const App = () => {
               Description: <input type="text" onChange={handleNewDescriptionChange} value={editDescription}/><br/>
               Price: <input type="number" min='0' onChange={handleNewPriceChange} value={editPrice}/><br/>
               Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} value={editQty}/><br/>
-              <input type="submit" value="edit product"/>
+              <a href="#" class="close-modal">
+                <input type="submit" value="edit product"/>
+              </a>
             </form>
             <a href="#" class="close-modal">Close</a>
           </div>
         </div>
+
+        <div>
+          <input type="text" onChange={handlenewNameChange}/>
+        </div>
+        <h2>{searchedName}</h2>
 
         <div id="product listing">
           <h2>Products</h2>

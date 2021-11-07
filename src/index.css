@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  padding-top: 30px;
+  padding-top: 50px;
 }
 
 /* Header */
@@ -13,6 +13,8 @@ body {
 }
 
 .header-words{
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 0;
   font-size: 40px;
   color: gray;
@@ -24,6 +26,8 @@ body {
 
 #right{
   float: right;
+  padding-top: 30px;
+  font-size: 30px;
 }
 
 /* Products */
@@ -51,7 +55,7 @@ body {
 }
 
 /* Create Modal */
-.buy-btn a {
+.list-button {
   text-decoration: none;
 }
 
@@ -85,9 +89,4 @@ body {
 
 .close-modal {
   text-decoration: none;
-}
-
-/* Edit Model */
-#edit-section{
-
 }
