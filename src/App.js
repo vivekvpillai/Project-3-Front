@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
-import Map from './components/map'
+// import Map from './components/map'
 // import Search from './components/search'
 
 const App = () => {
@@ -9,6 +9,7 @@ const App = () => {
   const [image, setImage] = useState('')
   const [qty, setQty] = useState()
   const [price, setPrice] = useState()
+  const [sellerName, setSellerName] = useState('')
 
   const [product, setProducts] = useState([])
 
@@ -121,7 +122,7 @@ const App = () => {
   const handlenewNameChange = (event)=>{
     setName(event.target.value);
     setEditName(event.target.value)
-    handleSearch(event.target.value)
+    // handleSearch(event.target.value)
   }
 
   const handleNewDescriptionChange = (event) => {
@@ -144,6 +145,10 @@ const App = () => {
     setEditPrice(event.target.value)
   }
 
+  const handleSellerName = (event) => {
+    setSellerName(event.target.value)
+  }
+
   const handleNewProductFormSubmit = (event) => {
     event.preventDefault()
     axios.post(
@@ -153,8 +158,8 @@ const App = () => {
         image: image,
         description: description,
         price: price,
-        qty: qty
-
+        qty: qty,
+        sellerName: sellerName
       }
     ).then(() => {
       axios
@@ -305,9 +310,10 @@ const App = () => {
             Description: <input type="text" onChange={handleNewDescriptionChange} /><br/>
             Price: <input type="number" min='0' onChange={handleNewPriceChange} /><br/>
             Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} /><br/>
+            Seller: <input type="text"  onChange={handleSellerName}/><br/>
             <input type="submit" value="create product" />
           </form>
-          <a href="#" class="close-modal">Close</a>
+          <a href="" class="close-modal">Close</a>
         </div>
       </div>
 
@@ -347,15 +353,38 @@ const App = () => {
         })
       }
 
-        <div id="product listing">
-          <h2>Products</h2>
-          <Map
-          product={product}
-          handleDelete={handleDelete}
-          handleUpdatesToProduct={handleUpdatesToProduct}
-          updateButton={updateButton}
-          />
-        </div>
+      <div id="map-section">
+        {
+          product.map((products) => {
+            return (
+              <div>
+                <img src={products.image}/>
+                <h2>{products.name}</h2>
+                <h2>{products.sellerName}</h2>
+                <h3>{products.description}</h3>
+                <h2>{products.price}</h2>
+                <h2>{products.qty}</h2>
+
+                <div>
+                {
+                  currentUser ?
+                  (currentUser.username === products.sellerName
+                  ?
+                  <div>
+                  <button onClick={ (event) => {handleDelete(products)}}>Bought!</button>
+
+                  <a href="#open-edit-modal">
+                  <button onClick={ (event) => {updateButton(products)}}>Edit</button>
+                  </a>
+                  </div>
+                  : null)
+                  : null}
+                </div>
+              </div>
+            )
+          })
+        }
+      </div>
     </main>
   );
 }
