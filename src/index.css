@@ -16,8 +16,8 @@ body {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 0;
-  font-size: 40px;
-  color: gray;
+  font-size: 50px;
+  color: white
 }
 
 #left{
@@ -51,7 +51,7 @@ body {
   color: #366251
 }
 .list-button{
-  color: white
+  color: gray
 }
 
 /* Create Modal */
@@ -89,4 +89,8 @@ body {
 
 .close-modal {
   text-decoration: none
+}
+
+.logoutBtn {
+  margin-top: 20px
 }
