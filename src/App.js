@@ -240,11 +240,13 @@ const App = () => {
       <div className="header-container">
         <h2 className="header-words">
           <span id="left">Quick Cash</span>
+          {currentUser.username ?
           <div id="sell-link">
             <span id='right'>
               <a class="list-button" href="#open-create-modal">Sell</a>
             </span>
           </div>
+          : null}
         </h2>
       </div>
       <div className="App">
