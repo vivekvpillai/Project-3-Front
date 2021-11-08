@@ -313,7 +313,7 @@ const App = () => {
             Seller: <input type="text"  onChange={handleSellerName}/><br/>
             <input type="submit" value="create product" />
           </form>
-          <a href="" class="close-modal">Close</a>
+          <a href="#" class="close-modal">Close</a>
         </div>
       </div>
 
