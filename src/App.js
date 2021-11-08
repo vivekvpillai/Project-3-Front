@@ -124,7 +124,6 @@ const App = () => {
   const handlenewNameChange = (event)=>{
     setName(event.target.value);
     setEditName(event.target.value)
-    // handleSearch(event.target.value)
   }
 
   const handleNewDescriptionChange = (event) => {
@@ -224,6 +223,7 @@ const App = () => {
 
   const buyButton = (productData) => {
     setNewQty(productData.qty - 1)
+    setId(productData._id)
   }
 
   const handleDelete = (productData)=> {
@@ -346,7 +346,9 @@ const App = () => {
             Description: <input type="text" onChange={handleNewDescriptionChange} value={editDescription}/><br/>
             Price: <input type="number" min='0' onChange={handleNewPriceChange} value={editPrice}/><br/>
             Quantity: <input type="number" min='0' onChange={handleNewQuantityChange} value={editQty}/><br/>
+            <a href="#" class="close-modal">
             <input type="submit" value="edit product"/>
+            </a>
           </form>
           <a href="#" class="close-modal">Close</a>
         </div>
@@ -382,18 +384,29 @@ const App = () => {
                 <h2>Seller: {products.sellerName}</h2>
                 <h3>{products.description}</h3>
                 <h2>${products.price}</h2>
-                <h2>{products.qty}</h2>
 
                   {products.qty === 0 ?
                     <h2> Out of Stock </h2> :
                     (products.qty !== 0
                     ?
-                    <div>
-                    <form onSubmit={handleBuyQty}>
-                      <input type="number" min='0' onChange={handleNewQuantityChange} value={newQty}/>
-                      <input type="submit" value="buy"/>
-                    </form>
-                    </div>
+                      <div>
+                        <h2>{products.qty}</h2>
+                        <a href="#open-buy-modal">
+                          <button onClick={ (event) => {buyButton(products)}}>Buy Now</button>
+                        </a>
+                        <div id="open-buy-modal" className="modal">
+                          <div className="modal-text">
+                          <h2>Please Confirm Your Purchase.</h2>
+                            <form onSubmit={handleBuyQty}>
+                              <input type="hidden" min='0' onChange={handleNewQuantityChange} value={newQty}/>
+                              <a href="#" class="close-modal">
+                              <input type="submit" value="confirm"/>
+                              </a>
+                            </form>
+                            <a href="#" class="close-modal">Close</a>
+                          </div>
+                        </div>
+                      </div>
                     : null)
                   }
 
