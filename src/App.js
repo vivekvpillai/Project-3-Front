@@ -374,7 +374,7 @@ const App = () => {
           product.map((products) => {
             return (
               <div>
-                <img src={products.image}/>
+                <img className="prodimg" src={products.image}/>
                 <h2>{products.name}</h2>
                 <h2>Seller: {products.sellerName}</h2>
                 <h3>{products.description}</h3>
