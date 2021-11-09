@@ -270,7 +270,9 @@ const App = () => {
               <div>
                 <div id="sell-link">
                   <span className='right'>
+
                     <a class="list-button" href="#open-create-modal">Sell</a>
+            
                     {toggleLogout ?
                       <button onClick={handleLogout} class='logoutBtn'>Logout</button>
                     :null
@@ -353,32 +355,85 @@ const App = () => {
         <input id="search" type="text" placeholder="Search..." onChange={(e) => {handleSearch(e.target.value)}}/>
       </div>
 
+      <div className="search-section">
       {
-        filtered.map((item) => {
-          return(
-            <div className="search">
-              <img className="prodimg" src={item.image}/>
+        filtered.map((products) => {
+          return (
+            <div className="prod-container">
+              <img className="prodimg" src={products.image}/>
               <div className="underpic">
-                <h2 className="prodName">{item.name}</h2>
-                <h3>{item.description}</h3>
-                <h2>{item.price}</h2>
-                <h2>{item.qty}</h2>
+                <h2>{products.name}</h2>
+                <h2>Seller: {products.sellerName}</h2>
+                <h3>{products.description}</h3>
+                <h2>${products.price}</h2>
+
+                {products.qty === 0 ?
+                  <h2> Out of Stock </h2> :
+                  (products.qty !== 0
+                  ?
+                    <div>
+                      <h2>{products.qty}</h2>
+                      <a href="#open-buy-modal">
+                        <button onClick={ (event) => {buyButton(products)}}>Buy Now</button>
+                      </a>
+                      <div id="open-buy-modal" className="modal">
+                        <div className="modal-text">
+                        <h2>Please Confirm Your Purchase.</h2>
+                          <form onSubmit={handleBuyQty}>
+                            <input type="hidden" min='0' onChange={handleNewQuantityChange} value={newQty}/>
+                            <a href="#" class="close-modal">
+                            <input type="submit" value="confirm"/>
+                            </a>
+                          </form>
+                          <a href="#" class="close-modal">Close</a>
+                        </div>
+                      </div>
+                    </div>
+                  : null)
+                }
+                </div>
+              <div>
+                {
+                  currentUser ?
+                  (currentUser.username === products.sellerName
+                  ?
+                  <div>
+                    <button onClick={ (event) => {handleDelete(products)}}>Delete</button>
+                    <a href="#open-edit-modal">
+                      <button onClick={ (event) => {updateButton(products)}}>Edit</button>
+                    </a>
+                  </div>
+                  : null)
+                : null }
+                { currentUser ?
+                  (currentUser.username === "admin"
+                    ?
+                    <div>
+                      <button onClick={ (event) => {handleDelete(products)}}>Delete</button>
+                      <a href="#open-edit-modal">
+                        <button onClick={ (event) => {updateButton(products)}}>Edit</button>
+                      </a>
+                    </div>
+                  : null)
+                : null}
+                </div>
               </div>
-            </div>
-          )
+            )
         })
       }
+      </div>
 
       <div className="map-section">
         {
           product.map((products) => {
             return (
-              <div>
+              <div className="prod-container">
                 <img className="prodimg" src={products.image}/>
-                <h2>{products.name}</h2>
-                <h2>Seller: {products.sellerName}</h2>
-                <h3>{products.description}</h3>
-                <h2>${products.price}</h2>
+                <div className="underpic">
+                  <h2>{products.name}</h2>
+                  <h2>Seller: {products.sellerName}</h2>
+                  <h3>{products.description}</h3>
+                  <h2>${products.price}</h2>
 
                   {products.qty === 0 ?
                     <h2> Out of Stock </h2> :
@@ -404,7 +459,7 @@ const App = () => {
                       </div>
                     : null)
                   }
-
+                  </div>
                 <div>
                   {
                     currentUser ?

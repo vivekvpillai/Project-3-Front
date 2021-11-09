@@ -1,5 +1,5 @@
 * {
-  font-family: 'Poppins'
+  font-family: 'Roboto'
 }
 
 body {
@@ -15,13 +15,14 @@ body {
   position: absolute;
   top: 0;
   width: 100%;
+  border-bottom: 3px solid yellow;
 }
 
 .header-words{
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 0;
-  font-size: 50px;
+  /* font-size: 50px; */
 }
 
 .App{
@@ -33,21 +34,38 @@ body {
   background: none;
   border: none;
   padding-top: 0;
-  font-size: 30px;
+  font-size: 20px;
   cursor: pointer;
-  color: white
+  color: white;
 }
 
 #left{
   float:left;
   font-family: "Faster One";
   color: yellow;
+  font-size: 80px;
+  padding-left: 84px;
+}
+
+.list-button{
+  text-decoration: none;
+  color: white;
+  font-size: 20px;
+  padding: 5px;
+  border-right: 1.5px solid lightgrey;
 }
 
 .right{
   float: right;
   margin-top: 10px;
-  font-size: 30px;
+}
+
+.right a:hover{
+  color: yellow;
+}
+
+.logoutBtn:hover{
+  color: yellow;
 }
 
 /* Products */
@@ -58,10 +76,28 @@ body {
   gap: 10px
 }
 
+.search-section{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  border-bottom: 3px solid grey;
+  margin-bottom: 20px;
+}
+
+.prod-container{
+  border-radius: 10px;
+  padding-bottom: 5px;
+}
+
+.prod-container:hover{
+  box-shadow: 3px 3px 3px 3px lightgray;
+}
+
 .prodimg{
   object-fit: contain;
-  width: 400px;
-  height: 400px
+  width: 300px;
+  height: 300px
 }
 
 .underpic{
@@ -73,10 +109,6 @@ body {
 }
 
 /* Create Modal */
-.list-button{
-  text-decoration: none;
-  color: white
-}
 
 .modal {
   visibility: hidden;
@@ -115,6 +147,7 @@ body {
 }
 
 .search-container{
+  background-color: lightgrey;
   text-align: center;
 }
 
