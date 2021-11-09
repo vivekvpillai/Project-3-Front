@@ -1,3 +1,7 @@
+* {
+  font-family: 'Poppins'
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -6,7 +10,7 @@ body {
 
 /* Header */
 .header-container{
-  background: rgba(215,215,217, 0.4);
+  background: rgb(11,85,158);
   position: absolute;
   top: 0;
   width: 100%;
@@ -16,25 +20,41 @@ body {
   margin-left: 10px;
   margin-right: 10px;
   margin-top: 0;
-<<<<<<< HEAD
   font-size: 50px;
   color: white
-=======
-  font-size: 40px;
->>>>>>> d449b7f7c785337b7b1c136d2a247159cbe0a7c4
+}
+
+.App{
+  text-align: right;
+}
+
+#inner{
+  display: inline;
+}
+
+.logoutBtn{
+  font-family: 'Poppins';
+  background: none;
+  border: none;
+  padding-top: 0;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 #left{
   float:left;
+  font-family: "Faster One";
+  color: yellow;
 }
 
 .right{
   float: right;
+  margin-top: 10px;
   font-size: 30px;
 }
 
 /* Products */
-#map-section{
+.map-section{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -53,12 +73,9 @@ body {
 .prodName{
   color: #366251
 }
+
 .list-button{
-<<<<<<< HEAD
-  color: gray
-=======
   color: black
->>>>>>> d449b7f7c785337b7b1c136d2a247159cbe0a7c4
 }
 
 /* Create Modal */
@@ -98,6 +115,17 @@ body {
   text-decoration: none
 }
 
-.logoutBtn {
-  margin-top: 20px
+.errorMsg{
+  font-size: 18px;
+}
+
+.search-container{
+  text-align: center;
+}
+
+#search{
+  /* margin-top: 100px; */
+  border: 2px solid black;
+  width: 200px;
+  height: 20px;
 }

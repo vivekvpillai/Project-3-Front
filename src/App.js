@@ -268,21 +268,14 @@ const App = () => {
             <span id="left">Quick Cash</span>
             {currentUser.username ?
               <div>
-                <div class='loggedInDiv'>
-                  <h4>
-                    This entire div will only show if a user is currently logged in
-                  </h4>
-                </div>
                 <div id="sell-link">
                   <span className='right'>
                     <a class="list-button" href="#open-create-modal">Sell</a>
-                  </span>
-                </div>
-                <div>
-                  {toggleLogout ?
-                    <button onClick={handleLogout} class='logoutBtn'>Logout</button>
+                    {toggleLogout ?
+                      <button onClick={handleLogout} class='logoutBtn'>Logout</button>
                     :null
-                  }
+                    }
+                  </span>
                 </div>
               </div>
             :
@@ -294,7 +287,7 @@ const App = () => {
                     <input type='text' placeholder='username' class='textInput' onChange={(event)=> {setUsername(event.target.value)}}/>
                     <input type='password' placeholder='password' class='textInput' onChange={(event)=> {setPassword(event.target.value)}}/>
                     {toggleError ?
-                      <h5 class='errorMsg'>{errorMessage}</h5>
+                      <p class='errorMsg'>{errorMessage}</p>
                       :null
                     }
                      <input type='submit' value='Login' class='submitBtn'/>
@@ -302,19 +295,21 @@ const App = () => {
                 </div>
               :
               // new user form
-                <div className="App" class='formContainer'>
+                <div id="inner" class='formContainer'>
                 <form onSubmit={handleCreateUser} class='inputForm'>
                   <input type='text' placeholder='username' class='textInput' onChange={(event)=> {setUsername(event.target.value)}}/>
                   <input type='password' placeholder='password' class='textInput' onChange={(event)=> {setPassword(event.target.value)}}/>
                   {toggleError ?
                    <h5 class='errorMsg'>{errorMessage}</h5>
                    :null
-                 }
+                  }
                   <input type='submit' value='Register' class='submitBtn'/>
                 </form>
                 </div>
               }
-              <button onClick={handleToggleForm} class='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
+              <div className="accountBtn-container">
+                <button onClick={handleToggleForm} class='accountBtn'>{toggleLogin ? 'Need an account?' : 'Already have an account?'}</button>
+              </div>
             </div>
             }
           </h2>
@@ -354,14 +349,14 @@ const App = () => {
         </div>
       </div>
 
-      <div id="search">
-        Search: <input type="text" onChange={(e) => {handleSearch(e.target.value)}}/>
+      <div className="search-container">
+        <input id="search" type="text" placeholder="Search..." onChange={(e) => {handleSearch(e.target.value)}}/>
       </div>
 
       {
         filtered.map((item) => {
           return(
-            <div>
+            <div className="search">
               <img className="prodimg" src={item.image}/>
               <div className="underpic">
                 <h2 className="prodName">{item.name}</h2>
@@ -374,7 +369,7 @@ const App = () => {
         })
       }
 
-      <div id="map-section">
+      <div className="map-section">
         {
           product.map((products) => {
             return (
