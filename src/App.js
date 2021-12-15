@@ -46,7 +46,7 @@ const App = () => {
      }
      setUsername('')
      setPassword('')
-     axios.post('https://safe-oasis-61254.herokuapp.com/users/createaccount', userObj)
+     axios.post('https://proj-3-back.herokuapp.com/users/createaccount', userObj)
      // .then(() => {
      //   axios
      //    .get('http://localhost:3001/users')
@@ -74,7 +74,7 @@ const App = () => {
      }
      setUsername('')
      setPassword('')
-     axios.put('https://safe-oasis-61254.herokuapp.com/users/login', userObj)
+     axios.put('https://proj-3-back.herokuapp.com/users/login', userObj)
      // .then(() => {
      //   axios
      //     .get('http://localhost:3001/users')
@@ -154,7 +154,7 @@ const App = () => {
   const handleNewProductFormSubmit = (event) => {
     event.preventDefault()
     axios.post(
-      'https://safe-oasis-61254.herokuapp.com/store',
+      'https://proj-3-back.herokuapp.com/store',
       {
         name:name,
         image: image,
@@ -165,7 +165,7 @@ const App = () => {
       }
     ).then(() => {
       axios
-          .get('https://safe-oasis-61254.herokuapp.com/store')
+          .get('https://proj-3-back.herokuapp.com/store')
           .then((response) => {
             setProducts(response.data)
         })
@@ -176,7 +176,7 @@ const App = () => {
     e.preventDefault()
     axios
     .put(
-      `https://safe-oasis-61254.herokuapp.com/store/${id}`,
+      `https://proj-3-back.herokuapp.com/store/${id}`,
         {
           name:editName,
           image:editImage,
@@ -187,7 +187,7 @@ const App = () => {
     )
     .then(()=> {
       axios
-          .get('https://safe-oasis-61254.herokuapp.com/store')
+          .get('https://proj-3-back.herokuapp.com/store')
           .then((response) => {
             setProducts(response.data)
       })
@@ -198,14 +198,14 @@ const App = () => {
     e.preventDefault()
     axios
     .put(
-      `https://safe-oasis-61254.herokuapp.com/store/${id}`,
+      `https://proj-3-back.herokuapp.com/store/${id}`,
         {
           qty:newQty
         }
     )
     .then(()=> {
       axios
-          .get('https://safe-oasis-61254.herokuapp.com/store')
+          .get('https://proj-3-back.herokuapp.com/store')
           .then((response) => {
             setProducts(response.data)
       })
@@ -228,10 +228,10 @@ const App = () => {
 
   const handleDelete = (productData)=> {
     axios
-        .delete(`https://safe-oasis-61254.herokuapp.com/store/${productData._id}`)
+        .delete(`https://proj-3-back.herokuapp.com/store/${productData._id}`)
         .then(()=> {
           axios
-              .get('https://safe-oasis-61254.herokuapp.com/store')
+              .get('https://proj-3-back.herokuapp.com/store')
               .then((response)=>{
                   setProducts(response.data)
               })
@@ -253,7 +253,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('https://safe-oasis-61254.herokuapp.com/store')
+      .get('https://proj-3-back.herokuapp.com/store')
       .then((response) => {
         setProducts(response.data)
       })
@@ -272,7 +272,7 @@ const App = () => {
                   <span className='right'>
 
                     <a class="list-button" href="#open-create-modal">Sell</a>
-            
+
                     {toggleLogout ?
                       <button onClick={handleLogout} class='logoutBtn'>Logout</button>
                     :null

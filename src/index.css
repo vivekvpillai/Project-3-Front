@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
 * {
-  font-family: 'Roboto'
+  font-family: 'Quicksand', sans-serif;
 }
 
 body {
@@ -158,4 +160,41 @@ body {
   border: 2px solid black;
   width: 200px;
   height: 20px;
+}
+
+
+@media (max-width: 430px){
+  .header-container{
+    height: 330px;
+    background: black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 3px solid yellow;
+  }
+
+  .header-words{
+    font-size: 40%
+  }
+
+  .search-container{
+    margin-top: 23vh;
+    margin-bottom: 0
+  }
+
+  #search{
+    /* margin-bottom: 18px;
+    margin-top: 65px */
+  }
+
+  .formContainer{
+    /* display: flex;
+    flex-direction: column;
+    width: 50%; */
+    /* margin-top: 10vh */
+  }
+
+  .textInput{
+    /* width: 50%; */
+  }
 }
