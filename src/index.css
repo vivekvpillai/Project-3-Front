@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
 * {
   font-family: 'Quicksand', sans-serif;
@@ -12,12 +13,12 @@ body {
 
 /* Header */
 .header-container{
-  height: 150px;
-  background: black;
+  height: 180px;
+  background: #3D6189;
   position: absolute;
   top: 0;
   width: 100%;
-  border-bottom: 3px solid yellow;
+  border-bottom: 3px solid black;
 }
 
 .header-words{
@@ -43,9 +44,9 @@ body {
 
 #left{
   float:left;
-  font-family: "Faster One";
-  color: yellow;
-  font-size: 80px;
+  font-family: 'Dancing Script', cursive;
+  color: white;
+  font-size: 120px;
   padding-left: 84px;
 }
 
@@ -63,11 +64,11 @@ body {
 }
 
 .right a:hover{
-  color: yellow;
+  color: black;
 }
 
 .logoutBtn:hover{
-  color: yellow;
+  color: black;
 }
 
 /* Products */
@@ -152,6 +153,7 @@ body {
 .search-container{
   background-color: lightgrey;
   text-align: center;
+  margin-top: 5vh;
 }
 
 #search{
@@ -166,11 +168,11 @@ body {
 @media (max-width: 430px){
   .header-container{
     height: 330px;
-    background: black;
+    background: #3D6189;
     position: fixed;
     top: 0;
     width: 100%;
-    border-bottom: 3px solid yellow;
+    border-bottom: 3px solid black;
   }
 
   .header-words{
